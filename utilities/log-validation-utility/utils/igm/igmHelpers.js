@@ -111,6 +111,7 @@ function compareCreationAndUpdationTime(
 
     if (
       _.isEqual(created_at, messageUpdatedAt) &&
+      responsdentActions &&
       responsdentActions.length === 0
     ) {
       issuerReportObj.respTime = `Time of creation and time of updation for /${endpoint} api should be the same`;
@@ -142,6 +143,10 @@ function checkCreatedAtInAll(endpoint, created_at, issuerReportObj) {
     logger.info(`Checking 'created_at' for /${endpoint}`);
 
     const issue_created_at = dao.getValue("issueCreatedAt");
+    console.log(
+      "🚀 ~ file: igmHelpers.js:145 ~ checkCreatedAtInAll ~ issue_created_at:",
+      issue_created_at
+    );
 
     if (created_at !== issue_created_at) {
       issuerReportObj.created_at = `'created_at' should match issue's 'created_at'`;

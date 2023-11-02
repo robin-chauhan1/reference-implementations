@@ -12,11 +12,14 @@ const checkOnIssueStatUsunsolicited = (dirPath, msgIdSet) => {
   let onIssueStatusObj = {};
   try {
     let onIssueStatus = fs.readFileSync(
-      dirPath + `/${DomainType.retail}_${constants.RET_ONISSUE_STATUS}(unsolicited).json`
+      dirPath +
+        `/${DomainType.retail}_${constants.RET_ONISSUE_STATUS}(unsolicited).json`
     );
     onIssueStatus = JSON.parse(onIssueStatus);
 
-    let issue = fs.readFileSync(dirPath + `/${DomainType.retail}_${constants.RET_ISSUE}.json`);
+    let issue = fs.readFileSync(
+      dirPath + `/${DomainType.retail}_${constants.RET_ISSUE}.json`
+    );
     issue = JSON.parse(issue);
 
     try {
@@ -89,7 +92,7 @@ const checkOnIssueStatUsunsolicited = (dirPath, msgIdSet) => {
         `Comparing MESSAGE ID of /${constants.RET_ISSUE_STATUS} and /${constants.RET_ONISSUE_STATUS}`
       );
       if (
-        !_.isEqual(
+        _.isEqual(
           dao.getValue("igmIssueStatMsgId"),
           onIssueStatus.context.message_id
         )
